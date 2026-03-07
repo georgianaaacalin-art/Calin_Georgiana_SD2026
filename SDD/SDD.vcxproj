@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FisierListaDubla.c" />
     <ClCompile Include="ListaSimpla.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
