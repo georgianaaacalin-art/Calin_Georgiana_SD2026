@@ -21,5 +21,8 @@
     <ClCompile Include="FisierListaDubla.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="farmacieListaDublaInlantuita.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
