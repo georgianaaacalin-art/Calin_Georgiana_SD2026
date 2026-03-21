@@ -24,5 +24,8 @@
     <ClCompile Include="farmacieListaDublaInlantuita.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="comandaHashTable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
