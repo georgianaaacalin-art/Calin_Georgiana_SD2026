@@ -67,7 +67,7 @@ void afisareLS(NodLS* cap) {
 }
 
 NodLS* inserareInceput(NodLS* cap, Comanda c) {
-	NodLS* nou = (NodLS*)malloc(sizeof(NodLS*));
+	NodLS* nou = (NodLS*)malloc(sizeof(NodLS));
 	nou->info = creareComanda(c.id, c.client, c.suma);
 	nou->next = NULL;
 	if (cap == NULL) {
@@ -103,7 +103,7 @@ int numarComenzi(HashTable tabela, const char* client) {
 			if (tabela.vector[i]) {
 				NodLS* aux = tabela.vector[i];
 				while (aux) {
-					if (strcmp(client, aux->info.client == 0)) {
+					if (strcmp(client, aux->info.client) == 0) {
 						numar++;
 					}
 					aux = aux->next;
@@ -165,8 +165,76 @@ void stergeComenzi(HashTable tabela, const char* client) {
 	}
 }
 
+void dezalocareLS(NodLS* lista) {
+	NodLS* aux = lista;
+	while (aux) {
+		free(aux->info.client);
+		NodLS* temp = aux->next;
+		free(aux);
+		aux = temp;
+	}
+}
+
+void dezalocareHT(HashTable tabela) {
+	for (int i = 0; i < tabela.dimensiune; i++) {
+		NodLS* aux = tabela.vector[i];
+		while (aux) {
+			free(aux->info.client);
+			NodLS* temp = aux;
+			aux = aux->next;
+			free(temp);
+		}
+	}
+	free(tabela.vector);
+
+
+}
+
 
 int main() {
+
+	HashTable tabela;
+	tabela.dimensiune = 70;
+	tabela.vector = (NodLS**)calloc(tabela.dimensiune, sizeof(NodLS*));
+	char buffer[60];
+	char delimitator[] = ",";
+	char* token;
+	FILE* f = fopen("fisier.txt", "r");
+	if (!f) {
+		printf("Eroare la deschiderea fisierulu.\n");
+
+		return 1;
+	}
+	while (fgets(buffer, sizeof(buffer), f)) {
+		Comanda c;
+		token = strtok(buffer, delimitator);
+		if (token) {
+			c.id = atoi(token);
+		}
+		token = strtok(NULL, delimitator);
+		if (token) {
+			c.client = (char*)malloc(strlen(token) + 1);
+			strcpy(c.client, token);
+		}
+		token = strtok(NULL, delimitator);
+		if (token) {
+			c.suma = atof(token);
+		}
+		inserareHT(tabela, c);
+		free(c.client);
+	}
+	fclose(f);
+	afisareHT(tabela);
+	int numar = numarComenzi(tabela, "17/03/2026");
+	printf("\n%d\n", numar);
+	NodLS* listaNoua = salveazaListaNoua(tabela, "17/03/2026");
+	printf("\nLista noua: \n");
+	afisareLS(listaNoua);
+	stergeComenzi(tabela, "17/03/2026");
+	afisareHT(tabela);
+	afisareLS(listaNoua);
+	dezalocareHT(tabela);
+
 
 	return 0;
 }
