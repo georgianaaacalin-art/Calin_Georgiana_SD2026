@@ -22,6 +22,7 @@
     <ClCompile Include="comandaHashTable.c" />
     <ClCompile Include="farmacieListaDublaInlantuita.c" />
     <ClCompile Include="FisierListaDubla.c" />
+    <ClCompile Include="laptop.c" />
     <ClCompile Include="ListaSimpla.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
