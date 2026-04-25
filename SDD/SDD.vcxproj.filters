@@ -36,5 +36,8 @@
     <ClCompile Include="restaurant.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="carte.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
