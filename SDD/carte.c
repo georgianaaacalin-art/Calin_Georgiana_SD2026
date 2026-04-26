@@ -1,6 +1,8 @@
-#define _CRT_SECURE_NO_WARNING
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <malloc.h>
 
 //structura arbore binar de cautare
 
@@ -54,6 +56,11 @@ Nod* inserareArbore(Nod* radacina, Carte c) {
 	return radacina;
 }
 
+void afisareCarte(Carte c) {
+	printf("Titlu: %-25s | Pagini: %-4d | An: %d\n",
+		c.titlu, c.nrPagini, c.anPublicare);
+}
+
 //afisarea cartilor in preordine - RSD
 void afisarePreOrdine(Nod* radacina) {
 	if (radacina) {
@@ -101,7 +108,7 @@ void nrCarti(Nod* radacina, int* contor) {
 
 	}
 }
-//tema: metoda care sa faca verificarea cu null pt radacina
+
 //suma totala a paginilor pt cartile aflate in frunzele arborelui
 void sumaPaginiFrunze(Nod* radacina, int* suma) {
 	if (radacina) {
@@ -113,6 +120,7 @@ void sumaPaginiFrunze(Nod* radacina, int* suma) {
 	}
 }
 
+//eliberati memoria alocata dinamic
 void dezalocareArbore(Nod* radacina) {
 	if (radacina) {
 		dezalocareArbore(radacina->stanga);
@@ -124,6 +132,69 @@ void dezalocareArbore(Nod* radacina) {
 }
 
 int main() {
+
+	Nod* radacina = NULL;
+	Carte c;
+	char buffer[100];
+	char* token;
+	FILE* f = fopen("carti.txt", "r");
+	if (f == NULL) {
+		printf("Fisierul nu s-a deschis\n");
+		return 1;
+	}
+
+	while (fgets(buffer, sizeof(buffer), f)) {
+		buffer[strcspn(buffer, "\n")] = '\0';
+
+		if (strlen(buffer) == 0) continue;
+
+		token = strtok(buffer, ",");
+		if (token == NULL) continue;
+
+		char titlu[100];
+		strncpy(titlu, token, sizeof(titlu) - 1);
+		titlu[sizeof(titlu) - 1] = '\0';
+
+		token = strtok(NULL, ",");
+		if (token == NULL) continue;
+		int nrPagini = atoi(token);
+
+		token = strtok(NULL, ",");
+		if (token == NULL) continue;
+		int anPublicare = atoi(token);
+
+		c = creareCarte(titlu, nrPagini, anPublicare);
+		radacina = inserareArbore(radacina, c);
+
+		free(c.titlu);
+	}
+
+	fclose(f);
+
+	printf("Afisare PreOrdine: \n"); 
+	afisarePreOrdine(radacina);
+
+	printf("\nAfisare InOrdine: \n");  
+	afisareInOrdine(radacina);
+
+	printf("\nAfisare PostOrdine: \n"); 
+	afisarePostOrdine(radacina);
+
+	int inaltime = inaltimeArbore(radacina); 
+	printf("\nInaltime arbore: %d\n", inaltime); 
+
+	int contor = 0; 
+	nrCarti(radacina, &contor); 
+	printf("\nNr total carti: %d\n", contor); 
+
+	
+	int suma = 0;
+	sumaPaginiFrunze(radacina, &suma);
+	printf("Suma totala a paginilor: %d\n", suma);
+
+	dezalocareArbore(radacina);
+
+
 
 	return 0;
 }
