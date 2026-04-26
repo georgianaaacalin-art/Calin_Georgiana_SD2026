@@ -101,7 +101,7 @@ void nrCarti(Nod* radacina, int* contor) {
 
 	}
 }
-//tema: metoda care sa faca verificarea cu null pt radacina
+
 //suma totala a paginilor pt cartile aflate in frunzele arborelui
 void sumaPaginiFrunze(Nod* radacina, int* suma) {
 	if (radacina) {
