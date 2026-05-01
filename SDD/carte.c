@@ -5,7 +5,6 @@
 #include <malloc.h>
 
 //structura arbore binar de cautare
-
 typedef struct Carte Carte;
 
 struct Carte {
