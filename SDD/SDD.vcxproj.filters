@@ -45,5 +45,8 @@
     <ClCompile Include="bicicletaArboreABC.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="motocicleta.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

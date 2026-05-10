@@ -26,6 +26,7 @@
     <ClCompile Include="FisierListaDubla.c" />
     <ClCompile Include="laptop.c" />
     <ClCompile Include="ListaSimpla.c" />
+    <ClCompile Include="motocicleta.c" />
     <ClCompile Include="restaurant.c" />
     <ClCompile Include="rezervareArboriAVL.c" />
     <ClCompile Include="VectorDeElemente.c" />
