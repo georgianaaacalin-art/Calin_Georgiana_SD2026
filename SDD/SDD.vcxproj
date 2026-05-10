@@ -29,6 +29,7 @@
     <ClCompile Include="motocicleta.c" />
     <ClCompile Include="restaurant.c" />
     <ClCompile Include="rezervareArboriAVL.c" />
+    <ClCompile Include="student.c" />
     <ClCompile Include="VectorDeElemente.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
