@@ -54,5 +54,8 @@
     <ClCompile Include="angajat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="apartament.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
