@@ -60,5 +60,8 @@
     <ClCompile Include="tranzactie.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="apartament_AVL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

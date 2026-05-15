@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="angajat.c" />
     <ClCompile Include="apartament.c" />
+    <ClCompile Include="apartament_AVL.c" />
     <ClCompile Include="bicicletaArboreABC.c" />
     <ClCompile Include="carte.c" />
     <ClCompile Include="comandaHashTable.c" />
